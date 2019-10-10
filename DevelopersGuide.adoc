@@ -859,7 +859,7 @@ IMPORTANT: If you're writing your UI in CLJC files then you need to make sure yo
 
 ```
 (ns app.client
-  (:require #?(:clj [com.fulcrologic.fulcro.dom-server :as dom] 
+  (:require #?(:clj [com.fulcrologic.fulcro.dom-server :as dom]
                :cljs [com.fulcrologic.fulcro.dom :as dom]))
 
 ... the actual code is the same as before
@@ -7011,11 +7011,11 @@ It turns out that Fulcro's approach to UI is quite easily amenable to state mach
 - The application database is normalized:
 It is very easy to describe where particular bits of data are in a non-ambiguous manner.
 - The UI refresh is *based on* the normalized data model, and not the UI structure.
-Triggering refreshes requires only that you know what data your changing.
+Triggering refreshes requires only that you know what data you are changing.
 
 Thus, it turns out to be quite easy to build a state machine system for Fulcro with the following properties:
 
-. The state machine doesn't need not know anything about the UI
+. The state machine need not know anything about the UI
 . The UI only needs to support displaying the declared state of the state machine.
 . Simple aliasing can map the state machine "values" onto Fulcro database values.
 . The aliasing makes it possible to re-use state machines on UIs that have varying shapes, and need not even name their Fulcro state according to the state machine's conventions.
@@ -7223,7 +7223,7 @@ Useful for keeping track of some additional bit of data while your state machine
 Get state-machine local value.
 `(uism/apply-action env (fn [state-map] state-map))`:: use a fn of state-map (i.e. some mutation helper) via a SM env.
 `(uism/asm-value env ks)`::
-Get the value of from an active state machine based on keyword OR key-path `ks`.
+Get a value from an active state machine based on keyword OR key-path `ks`.
 Primarily used for extending the library and internal use.
 `(uism/actor->ident env actor-name)`::
 Get the ident of an actor
@@ -7495,7 +7495,7 @@ That is to say that if state machine A triggers an event on B and D, and B trigg
 
 === Leveraging State Machine Local Storage
 
-There are many times that you will want to send in "configuration" information to a state machine that should be remembered ov the lifetime of that machine.
+There are many times that you will want to send in "configuration" information to a state machine that should be remembered over the lifetime of that machine.
 For example if you have code that triggers events in other state machines you might want to pass the ID of the other state machine as a parameter when you start the new one:
 
 ```
@@ -7678,7 +7678,7 @@ If the given router is to be shown on initial startup, then these default routin
 
 This delegates the novelty of routing targets to the *target itself*.
 Interestingly, this is quite convenient for composition and refactoring.
-The router is not programmed with any foreknowledge of the routing novelty of a target...only it's symbolic name!
+The router is not programmed with any foreknowledge of the routing novelty of a target...only its symbolic name!
 
 ```
 (defrouter RootRouter [this props]
@@ -7790,7 +7790,7 @@ Strings in the route segment *MUST* exactly match an incoming path prefix or the
 The keyword parameters are *route parameters*, and *capture* the incoming route element *as a string* (this ensures that URI's will work just as well as code-based paths that might contain other data types).
 Any data types you pass in the vector are converted via `str`, so if you need a more complicated coercion please do it before using it to change the route.
 
-Path segments compose in the UI. In our earlier diagram the `Settings` component might have the route segments: `["settings"]` and the `User` component `["user" :user-id]".  The `Pane2` component might list `["pane1"]`.
+Path segments compose in the UI. In our earlier diagram the `Settings` component might have the route segments: `["settings"]` and the `User` component `["user" :user-id]`.  The `Pane2` component might list `["pane1"]`.
 Now, since the pane 1 component is currently *nested* as a target of the router underneath the settings component, we can derive that the *full path* to Pane 1 in *this* particular UI layout is `["settings" "pane1"]`.
 This is the next critical step in our composition:
 Routers in a tree look for targets that can consume *what remains* of the path after parent targets have *consumed* the portion that matched those route segments.
@@ -7823,7 +7823,7 @@ Returns a vector of the path components on the current (live) route starting at 
 If you use your root component it will be the absolute path, and using some other component router will give the relative path from there.
 
 `(change-route-relative this-or-reconciler relative-class-or-instance new-route timeouts)`::
-Just like `change-route`, but can take a relative `new-route` and apply it starting and the given `relative-class-or-instance`.
+Just like `change-route`, but can take a relative `new-route` and apply it starting at the given `relative-class-or-instance`.
 Thus, some module of a program can route in a relative manner which will further decouple the components, making it easier to use a module in a development card or refactor it to a different location in the app without breaking local concerns.
 
 NOTE: This library will not have any code that connects HTML5 routing events to UI routing.
@@ -8079,7 +8079,7 @@ This allows you to have instances of a class that can have different queries:
   ...)
 ```
 
-In the above example one can now set the query for `Thing`, or "`Thing` with qualifier `:a`".
+In the above example one can now set the query for `Thing`, or pass:["]`Thing` with qualifier `:a`pass:["].
 
 The following live demo shows dynamic queries in action:
 
